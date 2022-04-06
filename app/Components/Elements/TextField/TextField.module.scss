@@ -1,0 +1,11 @@
+/* Move the field placeholder up, if its in focus or the input contains text. */
+.input-field:focus + .label, .input-field:not(:placeholder-shown) + .label {
+  opacity:1;
+  transform: translateY(-135%);
+  font-size: 13px;
+}
+
+/* Position the label furhter right, if a icon got placed at the start. */
+.icon + .input-field + .label {
+  left: 40px;
+}
