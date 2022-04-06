@@ -8,13 +8,13 @@
       // VARIABLE CONFIG FILES      (CHANGE IF NEEDED)
       //"**/.env": true,
       "**/.gitignore": true,
-      "**/Dockerfile": true,
+      //"**/Dockerfile": true,
       //"**/schema.graphql": true,
 
       // VARIABLE CONFIG FOLDERS    (CHANGE IF NEEDED)
       "**/.husky/": true,
-      "**/.github/": true,
-      "**/k8s": true,
+      //"**/.github/": true,
+      //"**/k8s": true,
 
       // FIXED CONFIG FILES         (DO NOT CHANGE)
       "**/.editorconfig": true,
