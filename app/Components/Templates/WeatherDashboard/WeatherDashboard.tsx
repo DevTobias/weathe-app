@@ -2,6 +2,9 @@ import { FunctionComponent } from 'react';
 import Container from '@Layouts/Container';
 import Navbar from '@Modules/Navbar';
 
+/**
+ * Simple Navbar component to render a page title.
+ */
 const WeatherDashboard: FunctionComponent = () => {
   return (
     <>
