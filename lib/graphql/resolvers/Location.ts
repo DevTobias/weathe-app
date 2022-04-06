@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import { Context } from '../context';
+// import redis from '@Lib/redis';
 
 /**
  * Get all locations which are currently persisted.
@@ -66,6 +67,12 @@ export const resolveDetailsFromName = async (name: string) => {
   // Remove umlauts from the name so the request don't get corrupted
   const cleanName = name.toLowerCase().replace('ö', 'oe').replace('ä', 'ae').replace('ü', 'ue');
 
+  // const cache = await redis.get(`details-${cleanName}`);
+
+  //if (cache) {
+  //  return JSON.parse(cache);
+  //}
+
   const { data } = await axios({
     method: 'get',
     url: `https://api.openweathermap.org/data/2.5/weather?q=${cleanName}&appid=${process.env.WEATHER_KEY}&units=metric&lang=de`,
@@ -76,7 +83,7 @@ export const resolveDetailsFromName = async (name: string) => {
   const date = DateTime.local(DateTime.now()).setZone('UTC').toFormat('EEEE, D');
   const temperature = `${Math.round(main.temp_min)}°C / ${Math.round(main.temp_max)}°C`;
 
-  return {
+  const result = {
     icon: mapWeatherIcon(weather[0].icon),
     date,
     temperature,
@@ -85,11 +92,21 @@ export const resolveDetailsFromName = async (name: string) => {
     windSpeed: wind.speed,
     currentTemperature: main.temp,
   };
+
+  //redis.set(`details-${cleanName}`, JSON.stringify(result));
+
+  return result;
 };
 
 export const resolveForecastByName = async (name: string) => {
   // Remove umlauts from the name so the request don't get corrupted
   const cleanName = name.toLowerCase().replace('ö', 'oe').replace('ä', 'ae').replace('ü', 'ue');
+
+  // const cache = await redis.get(`forecast-${cleanName}`);
+
+  //if (cache) {
+  //  return JSON.parse(cache);
+  //}
 
   const { data: geoData } = await axios({
     method: 'get',
@@ -97,8 +114,6 @@ export const resolveForecastByName = async (name: string) => {
   });
 
   const { lat, lon } = geoData[0];
-
-  console.log(lat, lon);
 
   const { data: foreCast } = await axios({
     method: 'get',
@@ -119,6 +134,8 @@ export const resolveForecastByName = async (name: string) => {
   });
 
   const filtered = hourly.filter((hour: any) => hour !== null);
+
+  //redis.set(`forecast-${cleanName}`, JSON.stringify(result));
 
   return filtered;
 };
