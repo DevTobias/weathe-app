@@ -1,0 +1,43 @@
+{
+    // FOLDER/FILE VISIBILITY
+    "files.exclude": {
+      // PROJECT META INFORMATION
+      "**/LICENSE": true,
+      "**/README.md": true,
+
+      // VARIABLE CONFIG FILES      (CHANGE IF NEEDED)
+      //"**/.env": true,
+      "**/.gitignore": true,
+      "**/Dockerfile": true,
+      //"**/schema.graphql": true,
+
+      // VARIABLE CONFIG FOLDERS    (CHANGE IF NEEDED)
+      "**/.husky/": true,
+      "**/.github/": true,
+      "**/k8s": true,
+
+      // FIXED CONFIG FILES         (DO NOT CHANGE)
+      "**/.editorconfig": true,
+      "**/yarn.lock": true,
+      "**/tsconfig.json": true,
+      "**/.eslintrc.js": true,
+      "**/postcss.config.js": true,
+      "**/.gitattributes": true,
+      "**/next.config.js": true,
+      "**/next-sitemap.js": true,
+      "**/jest.config.js": true,
+      "**/jest.setup.ts": true,
+
+      // FIXED CONFIG FOLDERS       (DO NOT CHANGE)
+      "**/node_modules/": true,
+
+      // GENERATED FOLDERS          (DO NOT CHANGE)
+      "**/.next/": true,
+
+      // GENERATED FILES            (DO NOT CHANGE)
+      "**/.husky/_": true,
+      "**/next-env.d.ts": true,
+      "**/robots.txt": true,
+      "**/sitemap*": true,
+    },
+}
