@@ -12,7 +12,10 @@ type Location = {
   };
 };
 
-type Action = { type: 'add' | 'set'; value: Location[] };
+type Action = {
+  type: 'add' | 'set';
+  value: Location[];
+};
 
 type Dispatch = (action: Action) => void;
 
@@ -24,7 +27,8 @@ const WeatherContext = createContext<{ state: State; dispatch: Dispatch } | unde
 
 /**
  * The Reducer for the weather context. The following actions can be emitted:
- * - add: Adds an location to the context.
+ * - add: Adds an location name to the database.
+ * - set: Sets one or more locations objects in the context.
  */
 const weatherReducer = ({ locations }: State, { type, value }: Action) => {
   switch (type) {
@@ -61,7 +65,7 @@ const ALL_LOCATIONS_QUERY = gql`
  * @param dispatch  The dispatch method for the reducer of the context.
  * @param client    The provided apollo client.
  */
-const fetchInitialLocations = async (dispatch: Dispatch, client: ApolloClient<object>) => {
+export const fetchLocations = async (dispatch: Dispatch, client: ApolloClient<object>) => {
   const { data } = await client.query({
     query: ALL_LOCATIONS_QUERY,
   });
@@ -78,7 +82,7 @@ export const WeatherProvider: FunctionComponent = ({ children }) => {
   const [state, dispatch] = useReducer(weatherReducer, { locations: [] });
 
   useEffect(() => {
-    fetchInitialLocations(dispatch, client);
+    fetchLocations(dispatch, client);
   }, [client]);
 
   return <WeatherContext.Provider value={{ state, dispatch }}>{children}</WeatherContext.Provider>;

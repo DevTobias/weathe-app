@@ -1,5 +1,7 @@
+import { useApolloClient } from '@apollo/client';
 import PlusIcon from '@heroicons/react/solid/esm/PlusIcon';
 import { FunctionComponent } from 'react';
+import { ADD_LOCATION_MUTATION } from './AddLocationCard.constants';
 import { AddLocationCardProps } from './AddLocationCard.types';
 import { useWeather } from '@Context/WeatherContext';
 import classNames from '@Utils/classNames';
@@ -11,22 +13,19 @@ import classNames from '@Utils/classNames';
  * @param className - The class name styles which should get applied to the component.
  */
 const AddLocationCard: FunctionComponent<AddLocationCardProps> = ({ className = '' }) => {
-  const mockLocation = {
-    location: 'Darmstadt',
-    icon: 'cloudy',
-    date: 'Montag, 01.10.18',
-    temperature: '4°C / 14°C',
-    description: 'Bewölkt',
-    probabilityRain: 20,
-  };
-
   const { dispatch } = useWeather();
+  const client = useApolloClient();
 
   /**
    * Opens an popup where the user can add a new location.
    */
-  const addLocation = () => {
-    dispatch({ type: 'add', value: mockLocation });
+  const addLocation = async () => {
+    const { data } = await client.mutate({
+      mutation: ADD_LOCATION_MUTATION,
+      variables: { locationName: 'Kassel' },
+    });
+
+    dispatch({ type: 'add', value: [data.locationAdd.location] });
   };
 
   return (
