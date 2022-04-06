@@ -16,6 +16,46 @@ export const resolveLocations = async ({ prisma }: Context) => {
 };
 
 /**
+ * Maps the open weather icon name to a more specific one used by the frontend.
+ *
+ * @param icon The open weather icon key.
+ * @returns    The mapped icon name (same name as image in public folder).
+ */
+const mapWeatherIcon = (icon: string) => {
+  switch (icon) {
+    case '01d':
+      return 'clear-day';
+    case '01n':
+      return 'clear-night';
+    case '02d':
+      return 'partly-cloudy-day';
+    case '02n':
+      return 'partly-cloudy-night';
+    case '03d':
+    case '03n':
+    case '04d':
+    case '04n':
+      return 'cloudy';
+    case '09d':
+    case '09n':
+    case '10d':
+    case '10n':
+      return 'rain';
+    case '11d':
+    case '11n':
+      return 'thunderstorm';
+    case '13d':
+    case '13n':
+      return 'snow';
+    case '50d':
+    case '50n':
+      return 'fog';
+    default:
+      return 'clear-day';
+  }
+};
+
+/**
  * Get the details from the open weather api from a provided name.
  *
  * @param name  The name of the location.
@@ -36,7 +76,7 @@ export const resolveDetailsFromName = async (name: string) => {
   const temperature = `${Math.round(main.temp_min)}°C / ${Math.round(main.temp_max)}°C`;
 
   return {
-    icon: weather[0].icon,
+    icon: mapWeatherIcon(weather[0].icon),
     date,
     temperature,
     description: weather[0].description,
