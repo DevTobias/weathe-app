@@ -1,0 +1,10 @@
+{
+  "name": "Weather Application",
+  "short_name": "Weather App",
+  "description": "A simple fullstack application to present weather data from a public API.",
+  "theme_color": "#001427",
+  "background_color": "#ffffff",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}
