@@ -83,3 +83,22 @@ export const resolveDetailsFromName = async (name: string) => {
     probabilityRain: main.humidity,
   };
 };
+
+/**
+ * Adds the location with the provided name to the database.
+ *
+ * Following errors can happen:
+ * - InvalidLocationError    - If the location already exists in database.
+ *
+ * @param locationName The name of the location which should get added.
+ * @param prisma       The prisma connection client.
+ * @returns            The created location entity.
+ */
+export const resolveAddLocation = async (locationName: string, { prisma }: Context) => {
+  try {
+    const location = await prisma.locations.create({ data: { locationName } });
+    return { errors: [], location };
+  } catch (_) {
+    return { errors: [{ message: 'location already exists' }], location: null };
+  }
+};

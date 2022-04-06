@@ -1,5 +1,10 @@
-import { extendType, nonNull, objectType } from 'nexus';
-import { resolveLocations, resolveDetailsFromName } from '../resolvers/Location';
+import { extendType, nonNull, objectType, stringArg } from 'nexus';
+import {
+  resolveLocations,
+  resolveDetailsFromName,
+  resolveAddLocation,
+} from '../resolvers/Location';
+import { Error } from './Error';
 
 /**
  * Describes the API Endpoint for details of a specific
@@ -41,6 +46,38 @@ export const LocationQuery = extendType({
     t.nonNull.list.field('locations', {
       type: nonNull(Location),
       resolve: async (_, __, ctx) => resolveLocations(ctx),
+    });
+  },
+});
+
+/**
+ * Describes the result of the add location functions. If an location got created,
+ * the mutation returns the created object. If not, the location field will be null
+ * and an error will be listed in the errors field.
+ */
+const AddLocationPayload = objectType({
+  name: 'AuthPayload',
+  definition(t) {
+    t.field('location', {
+      type: Location,
+    });
+    t.nonNull.list.field('errors', { type: nonNull(Error) });
+  },
+});
+
+/**
+ * Describes the API Endpoint which adds an location to the
+ * database.
+ */
+export const AddLocationMutation = extendType({
+  type: 'Mutation',
+  definition(t) {
+    t.nonNull.field('locationAdd', {
+      type: AddLocationPayload,
+      args: {
+        locationName: nonNull(stringArg()),
+      },
+      resolve: async (_, { locationName }, ctx) => resolveAddLocation(locationName, ctx),
     });
   },
 });

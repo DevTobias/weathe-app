@@ -2,6 +2,15 @@
 ### Do not make changes to this file directly
 
 
+type AuthPayload {
+  errors: [Error!]!
+  location: Location
+}
+
+type Error {
+  message: String!
+}
+
 type Location {
   details: LocationDetails!
   id: ID!
@@ -14,6 +23,10 @@ type LocationDetails {
   icon: String
   probabilityRain: Float
   temperature: String
+}
+
+type Mutation {
+  locationAdd(locationName: String!): AuthPayload!
 }
 
 type Query {
