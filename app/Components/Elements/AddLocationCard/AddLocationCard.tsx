@@ -1,28 +1,9 @@
 import Image from 'next/image';
 import { FunctionComponent } from 'react';
-import { WeatherCardProps } from './WeatherCard.types';
+import { AddLocationCardProps } from './AddLocationCard.types';
 import classNames from '@Utils/classNames';
 
-/**
- * Component to render a overview of weather data in a specific location.
- *
- * @param className       - The class name styles which should get applied to the component.
- * @param location        - The location the data was taken.
- * @param icon            - A name of an icon which symbolizes the current weather.
- * @param date  	        - The date of the weather data for the location.
- * @param temperature     - A temperature string of the format: x°C / y°C
- * @param probabilityRain - The probability of rain in the location.
- * @param description     - Short description of the current weather.
- */
-const WeatherCard: FunctionComponent<WeatherCardProps> = ({
-  className = '',
-  location,
-  icon,
-  date,
-  temperature,
-  description,
-  probabilityRain,
-}) => {
+const Navbar: FunctionComponent<AddLocationCardProps> = ({ className = '' }) => {
   return (
     <div className={classNames(className, 'bg-neutral-0 py-5 space-y-9 w-96 shadow-sm rounded-sm')}>
       <h3 className="text-neutral-700 text-center text-2xl">{location}</h3>
@@ -53,4 +34,4 @@ const WeatherCard: FunctionComponent<WeatherCardProps> = ({
   );
 };
 
-export default WeatherCard;
+export default Navbar;
