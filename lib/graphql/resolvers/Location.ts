@@ -9,6 +9,6 @@ import { Context } from '../context';
  */
 export const resolveLocations = async ({ prisma }: Context) => {
   return prisma.locations.findMany({
-    orderBy: [{ location: 'desc' }],
+    orderBy: [{ locationName: 'desc' }],
   });
 };

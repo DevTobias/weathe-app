@@ -1,4 +1,4 @@
-import { extendType, objectType } from 'nexus';
+import { extendType, nonNull, objectType } from 'nexus';
 import { resolveLocations } from '../resolvers/Location';
 
 /**
@@ -8,7 +8,7 @@ export const Location = objectType({
   name: 'Location',
   definition(t) {
     t.nonNull.id('id');
-    t.nonNull.string('name');
+    t.nonNull.string('locationName');
   },
 });
 
@@ -19,8 +19,8 @@ export const Location = objectType({
 export const LocationQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.field('locations', {
-      type: Location,
+    t.nonNull.list.field('locations', {
+      type: nonNull(Location),
       resolve: async (_, __, ctx) => resolveLocations(ctx),
     });
   },
