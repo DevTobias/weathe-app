@@ -14,7 +14,7 @@ const AddLocationCard: FunctionComponent<AddLocationCardProps> = ({ className = 
     <div
       className={classNames(
         className,
-        'bg-neutral-0 text-neutral-200 py-5 space-y-9 w-[100%] sm:w-96 sm:h-56 shadow-sm rounded-sm flex items-center justify-center cursor-pointer border-dotted border-2 border-neutral-100',
+        'bg-neutral-0 text-neutral-200 py-5 space-y-9 w-[100%] sm:w-96 sm:h-56 shadow-sm rounded-sm flex items-center justify-center cursor-pointer transition-all border-dotted border-2 border-neutral-100 hover:border-teal-400 hover:scale-105',
       )}
     >
       <div className="flex items-center space-x-3 select-none">

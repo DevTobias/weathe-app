@@ -27,14 +27,14 @@ const WeatherCard: FunctionComponent<WeatherCardProps> = ({
     <div
       className={classNames(
         className,
-        'bg-neutral-0 py-5 space-y-9 w-[100%] sm:w-96 h-56 shadow-sm rounded-sm',
+        'bg-neutral-0 py-5 space-y-9 w-[100%] sm:w-96 h-56 shadow-sm rounded-sm cursor-pointer transition-all  hover:border-2 hover:border-teal-400 hover:scale-105',
       )}
     >
       <h3 className="text-neutral-700 text-center text-2xl">{location}</h3>
 
       <div className="grid grid-cols-2 justify-center">
         <div className="flex justify-center items-center">
-          <div className="w-2/3">
+          <div className="w-2/3 pointer-events-none select-none">
             <Image
               src={`/images/${icon}.png`}
               alt={`${icon} icon`}
