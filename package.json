@@ -1,0 +1,22 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "A simple fullstack application to present weather data from a public API.",
+  "repository": "https://github.com/DevTobias/weather-app.git",
+  "keywords": [
+    "nextjs",
+    "weather api",
+    "typescript",
+    "graphql",
+    "fullstack"
+  ],
+  "author": "DevTobias <tobi.kaerst@gmx.de>",
+  "license": "MIT",
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "husky": "^7.0.4"
+  }
+}
