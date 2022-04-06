@@ -23,14 +23,13 @@ const WeatherContext = createContext<{ state: State; dispatch: Dispatch } | unde
  * The Reducer for the weather context. The following actions can be emitted:
  * - add: Adds an location to the context.
  */
-const weatherReducer = (state: State, action: Action) => {
-  switch (action.type) {
-    // TODO: ADD FUNCTIONALITY
+const weatherReducer = ({ locations }: State, { type, value }: Action) => {
+  switch (type) {
     case 'add': {
-      return { locations: state.locations };
+      return { locations: [...locations, value] };
     }
     default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
+      throw new Error(`Unhandled action type: ${type}`);
     }
   }
 };
@@ -40,17 +39,7 @@ const weatherReducer = (state: State, action: Action) => {
  * the location values.
  */
 export const WeatherProvider: FunctionComponent = ({ children }) => {
-  // TODO: REMOVE MOCK LOCATION
-  const mockLocation = {
-    location: 'Darmstadt',
-    icon: 'cloudy',
-    date: 'Montag, 01.10.18',
-    temperature: '4°C / 14°C',
-    description: 'Bewölkt',
-    probabilityRain: 20,
-  };
-
-  const [state, dispatch] = useReducer(weatherReducer, { locations: [mockLocation] });
+  const [state, dispatch] = useReducer(weatherReducer, { locations: [] });
   return <WeatherContext.Provider value={{ state, dispatch }}>{children}</WeatherContext.Provider>;
 };
 
