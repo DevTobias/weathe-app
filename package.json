@@ -21,6 +21,9 @@
     "dev": "next dev",
     "lint": "next lint",
     "build": "next build",
+    "analyze": "cross-env ANALYZE=true npm run build",
+    "clean": "npx rimraf .next coverage",
+    "clean:full": "npx rimraf .next node_modules coverage",
     "prepare": "husky install",
     "postbuild": "cross-env next-sitemap"
   },
@@ -29,7 +32,9 @@
     "@infotition/prettier-config": "^1.0.0",
     "@types/node": "^17.0.23",
     "@types/react": "^17.0.43",
+    "cross-env": "^7.0.3",
     "husky": "^7.0.4",
+    "next-sitemap": "^2.5.17",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   },
