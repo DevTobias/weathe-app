@@ -18,11 +18,13 @@ type Location {
 }
 
 type LocationDetails {
+  currentTemperature: String
   date: String
   description: String
   icon: String
   probabilityRain: Float
   temperature: String
+  windSpeed: Float
 }
 
 type Mutation {
@@ -30,5 +32,6 @@ type Mutation {
 }
 
 type Query {
+  location(locationName: String!): LocationDetails!
   locations: [Location!]!
 }

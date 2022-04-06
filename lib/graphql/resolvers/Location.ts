@@ -71,7 +71,7 @@ export const resolveDetailsFromName = async (name: string) => {
   });
 
   // Parse the data into a valid format
-  const { weather, main } = data;
+  const { weather, main, wind } = data;
   const date = DateTime.local(DateTime.now()).setZone('UTC').toFormat('EEEE, D');
   const temperature = `${Math.round(main.temp_min)}°C / ${Math.round(main.temp_max)}°C`;
 
@@ -81,6 +81,8 @@ export const resolveDetailsFromName = async (name: string) => {
     temperature,
     description: weather[0].description,
     probabilityRain: main.humidity,
+    windSpeed: wind.speed,
+    currentTemperature: main.temp,
   };
 };
 

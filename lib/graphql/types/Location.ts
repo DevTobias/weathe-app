@@ -18,6 +18,8 @@ export const LocationDetails = objectType({
     t.string('temperature');
     t.string('description');
     t.float('probabilityRain');
+    t.float('windSpeed');
+    t.string('currentTemperature');
   },
 });
 
@@ -46,6 +48,23 @@ export const LocationQuery = extendType({
     t.nonNull.list.field('locations', {
       type: nonNull(Location),
       resolve: async (_, __, ctx) => resolveLocations(ctx),
+    });
+  },
+});
+
+/**
+ * Describes the API Endpoint which returns the details of the location
+ * with the provided name.
+ */
+export const LocationDetailQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.nonNull.field('location', {
+      type: nonNull(LocationDetails),
+      args: {
+        locationName: nonNull(stringArg()),
+      },
+      resolve: async (_, { locationName }) => resolveDetailsFromName(locationName),
     });
   },
 });
