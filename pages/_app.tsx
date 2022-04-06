@@ -2,8 +2,12 @@ import { NextSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
 
 import '@Styles/base.scss';
+import { useEffect } from 'react';
+import innerVh from '@Utils/innerVh';
 
 function App({ Component, pageProps }: AppProps) {
+  useEffect(() => innerVh(), []);
+
   return (
     <>
       <NextSeo
