@@ -31,7 +31,7 @@ const WeatherCard: FunctionComponent<WeatherCardProps> = ({
       <a
         className={classNames(
           className,
-          'bg-neutral-0 py-5 space-y-9 w-[100%] sm:w-96 h-56 shadow-sm rounded-sm cursor-pointer transition-all  hover:border-2 hover:border-teal-400 hover:scale-105',
+          'bg-neutral-0 py-5 space-y-9 w-[100%] sm:w-[27rem] h-56 shadow-sm rounded-sm cursor-pointer transition-all  hover:border-2 hover:border-teal-400 hover:scale-105',
         )}
       >
         <h3 className="text-neutral-700 text-center text-2xl">{location}</h3>
