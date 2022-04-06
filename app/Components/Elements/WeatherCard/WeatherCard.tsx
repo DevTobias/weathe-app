@@ -27,7 +27,7 @@ const WeatherCard: FunctionComponent<WeatherCardProps> = ({
   probabilityRain,
 }) => {
   return (
-    <Link href={`/${location.toLowerCase()}`}>
+    <Link href={`/location/${location.toLowerCase()}`}>
       <a
         className={classNames(
           className,
