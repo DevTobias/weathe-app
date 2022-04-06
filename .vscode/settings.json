@@ -3,7 +3,7 @@
     "files.exclude": {
       // PROJECT META INFORMATION
       "**/LICENSE": true,
-      //"**/README.md": true,
+      "**/README.md": true,
 
       // VARIABLE CONFIG FILES      (CHANGE IF NEEDED)
       //"**/.env": true,
@@ -13,7 +13,7 @@
 
       // VARIABLE CONFIG FOLDERS    (CHANGE IF NEEDED)
       "**/.husky/": true,
-      //"**/.github/": true,
+      "**/.github/": true,
       "**/k8s": true,
 
       // FIXED CONFIG FILES         (DO NOT CHANGE)
