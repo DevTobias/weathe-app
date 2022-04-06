@@ -3,8 +3,17 @@
 
 
 type Location {
+  details: LocationDetails!
   id: ID!
   locationName: String!
+}
+
+type LocationDetails {
+  date: String
+  description: String
+  icon: String
+  probabilityRain: Float
+  temperature: String
 }
 
 type Query {
