@@ -1,0 +1,51 @@
+{
+    "ts-node": {
+      "compilerOptions": {
+        "module" : "CommonJS",
+      }
+    },
+    "compilerOptions": {
+      "target": "es5",
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "noEmit": true,
+      "esModuleInterop": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "jsx": "preserve",
+      "incremental": true,
+      "experimentalDecorators": true,
+      "baseUrl": "./",
+      "paths": {
+        "@Elements/*": ["app/Components/Elements/*"],
+        "@Layouts/*": ["app/Components/Layouts/*"],
+        "@Modules/*": ["app/Components/Modules/*"],
+        "@Templates/*": ["app/Components/Templates/*"],
+        "@Helpers/*": ["app/Components/Helpers/*"],
+        "@Hooks/*": ["app/Hooks/*"],
+        "@Styles/*": ["app/Styles/*"],
+        "@Utils/*": ["app/Utils/*"],
+        "@Context/*": ["app/Context/*"],
+        "@Lib/*": ["lib/*"],
+      }
+    },
+    "include": [
+      "**/*.ts", "**/*.tsx",
+  
+      // Eslint only inclusions
+      ".eslintrc.js",
+      "postcss.config.js",
+      "tailwind.config.js",
+      "next.config.js",
+      "jest.config.js",
+      "jest.setup.ts",
+      "next-sitemap.js"
+    ],
+    "exclude": ["node_modules", ".next"]
+  }
+  
