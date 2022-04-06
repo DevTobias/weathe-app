@@ -24,7 +24,12 @@ const WeatherCard: FunctionComponent<WeatherCardProps> = ({
   probabilityRain,
 }) => {
   return (
-    <div className={classNames(className, 'bg-neutral-0 py-5 space-y-9 w-96 shadow-sm rounded-sm')}>
+    <div
+      className={classNames(
+        className,
+        'bg-neutral-0 py-5 space-y-9 w-96 h-56 shadow-sm rounded-sm',
+      )}
+    >
       <h3 className="text-neutral-700 text-center text-2xl">{location}</h3>
 
       <div className="grid grid-cols-2 justify-center">

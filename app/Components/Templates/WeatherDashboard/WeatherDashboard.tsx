@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import AddLocationCard from '@Elements/AddLocationCard';
 import WeatherCard from '@Elements/WeatherCard';
 import Container from '@Layouts/Container';
 import Navbar from '@Modules/Navbar';
@@ -19,6 +20,7 @@ const WeatherDashboard: FunctionComponent = () => {
           description="Bewölkt"
           probabilityRain={20}
         />
+        <AddLocationCard />
       </Container>
     </>
   );

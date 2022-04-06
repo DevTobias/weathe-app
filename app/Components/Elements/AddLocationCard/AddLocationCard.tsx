@@ -1,37 +1,28 @@
-import Image from 'next/image';
+import PlusIcon from '@heroicons/react/solid/esm/PlusIcon';
 import { FunctionComponent } from 'react';
 import { AddLocationCardProps } from './AddLocationCard.types';
 import classNames from '@Utils/classNames';
 
-const Navbar: FunctionComponent<AddLocationCardProps> = ({ className = '' }) => {
+/**
+ * Component to render a card which enables you to add an location
+ * to the dashboard.
+ *
+ * @param className - The class name styles which should get applied to the component.
+ */
+const AddLocationCard: FunctionComponent<AddLocationCardProps> = ({ className = '' }) => {
   return (
-    <div className={classNames(className, 'bg-neutral-0 py-5 space-y-9 w-96 shadow-sm rounded-sm')}>
-      <h3 className="text-neutral-700 text-center text-2xl">{location}</h3>
-
-      <div className="grid grid-cols-2 justify-center">
-        <div className="flex justify-center items-center">
-          <div className="w-2/3">
-            <Image
-              src={`/images/${icon}.png`}
-              alt={`${icon} icon`}
-              width={1012}
-              height={664}
-              layout="responsive"
-            />
-          </div>
-        </div>
-
-        <section className="text-neutral-400 space-y-3 pr-5">
-          <h4 className="border-b-2 border-b-neutral-100">{date}</h4>
-          <div>
-            <div>{temperature}</div>
-            <div>{description}</div>
-            <div>{probabilityRain}% Regen</div>
-          </div>
-        </section>
+    <div
+      className={classNames(
+        className,
+        'bg-neutral-0 text-neutral-200 py-5 space-y-9 w-96 h-56 shadow-sm rounded-sm flex items-center justify-center cursor-pointer border-dotted border-2 border-neutral-100',
+      )}
+    >
+      <div className="flex items-center space-x-3 select-none">
+        <PlusIcon className="w-6 h-6" />
+        <h3 className="text-center text-2xl">Ort hinzufügen</h3>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default AddLocationCard;
