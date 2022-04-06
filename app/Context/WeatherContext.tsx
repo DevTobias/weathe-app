@@ -40,7 +40,17 @@ const weatherReducer = (state: State, action: Action) => {
  * the location values.
  */
 export const WeatherProvider: FunctionComponent = ({ children }) => {
-  const [state, dispatch] = useReducer(weatherReducer, { locations: [] });
+  // TODO: REMOVE MOCK LOCATION
+  const mockLocation = {
+    location: 'Darmstadt',
+    icon: 'cloudy',
+    date: 'Montag, 01.10.18',
+    temperature: '4°C / 14°C',
+    description: 'Bewölkt',
+    probabilityRain: 20,
+  };
+
+  const [state, dispatch] = useReducer(weatherReducer, { locations: [mockLocation] });
   return <WeatherContext.Provider value={{ state, dispatch }}>{children}</WeatherContext.Provider>;
 };
 
