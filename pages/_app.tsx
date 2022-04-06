@@ -1,6 +1,8 @@
 import { NextSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
 
+import '@Styles/base.scss';
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
