@@ -56,7 +56,7 @@ export const LocationQuery = extendType({
  * and an error will be listed in the errors field.
  */
 const AddLocationPayload = objectType({
-  name: 'AuthPayload',
+  name: 'AddLocationPayload',
   definition(t) {
     t.field('location', {
       type: Location,

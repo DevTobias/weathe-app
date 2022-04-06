@@ -2,7 +2,7 @@
 ### Do not make changes to this file directly
 
 
-type AuthPayload {
+type AddLocationPayload {
   errors: [Error!]!
   location: Location
 }
@@ -26,7 +26,7 @@ type LocationDetails {
 }
 
 type Mutation {
-  locationAdd(locationName: String!): AuthPayload!
+  locationAdd(locationName: String!): AddLocationPayload!
 }
 
 type Query {
