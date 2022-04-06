@@ -13,7 +13,7 @@
 
       // VARIABLE CONFIG FOLDERS    (CHANGE IF NEEDED)
       "**/.husky/": true,
-      "**/.github/": true,
+      //"**/.github/": true,
       "**/k8s": true,
 
       // FIXED CONFIG FILES         (DO NOT CHANGE)
