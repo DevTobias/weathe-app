@@ -13,23 +13,22 @@ import classNames from '@Utils/classNames';
  */
 const WeatherCards: FunctionComponent<WeatherCardsProps> = ({ className = '' }) => {
   const { state } = useWeather();
+
   return (
     <div
       className={classNames(className, 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 x gap-6')}
     >
-      {state.locations.map(
-        ({ location, date, description, icon, probabilityRain, temperature }) => (
-          <WeatherCard
-            key={location}
-            location={location}
-            icon={icon}
-            date={date}
-            temperature={temperature}
-            description={description}
-            probabilityRain={probabilityRain}
-          />
-        ),
-      )}
+      {state.locations.map(({ locationName, details }) => (
+        <WeatherCard
+          key={locationName}
+          location={locationName}
+          icon={details.icon}
+          date={details.date}
+          temperature={details.temperature}
+          description={details.description}
+          probabilityRain={details.probabilityRain}
+        />
+      ))}
 
       <AddLocationCard />
     </div>
