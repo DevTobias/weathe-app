@@ -12,3 +12,14 @@ export const LOCATION_DETAIL_QUERY = gql`
     }
   }
 `;
+
+export const FORECAST_QUERY = gql`
+  query LocationForecast($locationName: String!) {
+    locationForecast(locationName: $locationName) {
+      time
+      icon
+      temperature
+      probabilityRain
+    }
+  }
+`;

@@ -5,8 +5,8 @@ import ChevronLeftIcon from '@heroicons/react/solid/esm/ChevronLeftIcon';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FunctionComponent } from 'react';
-import { LOCATION_DETAIL_QUERY } from './LocationDetail.constants';
-import { LocationDetailProps, LocationDetailQuery } from './LocationDetail.types';
+import { LOCATION_DETAIL_QUERY, FORECAST_QUERY } from './LocationDetail.constants';
+import { LocationDetailProps, LocationDetailQuery, ForecastQuery } from './LocationDetail.types';
 import Button from '@Elements/Button';
 import Container from '@Layouts/Container';
 import Navbar from '@Modules/Navbar';
@@ -19,7 +19,11 @@ const LocationDetail: FunctionComponent<LocationDetailProps> = ({ locationName }
     variables: { locationName },
   });
 
-  if (!data) return null;
+  const { data: forecast } = useQuery<ForecastQuery>(FORECAST_QUERY, {
+    variables: { locationName },
+  });
+
+  if (!data || !forecast) return null;
 
   const { currentTemperature, date, description, icon, probabilityRain, windSpeed } = data.location;
 
@@ -58,6 +62,32 @@ const LocationDetail: FunctionComponent<LocationDetailProps> = ({ locationName }
                 />
               </div>
               <h3 className="text-4xl text-neutral-700 font-bold">{currentTemperature} °C</h3>
+            </div>
+
+            <div className="flex text-neutral-700">
+              {forecast.locationForecast.map((forecastItem) => (
+                <div
+                  key={forecastItem.time}
+                  className="justify-center space-x-4 flex flex-col text-center"
+                >
+                  <div>{forecastItem.time}</div>
+
+                  <div className="flex justify-start items-center">
+                    <div className="w-14 pointer-events-none select-none">
+                      <Image
+                        src={`/images/${icon}.png`}
+                        alt={`${forecastItem.icon} icon`}
+                        width={1012}
+                        height={664}
+                        layout="responsive"
+                      />
+                    </div>
+                  </div>
+
+                  <div>{forecastItem.temperature} °C</div>
+                  <div>{forecastItem.probabilityRain} %</div>
+                </div>
+              ))}
             </div>
           </div>
 

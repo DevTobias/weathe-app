@@ -27,11 +27,19 @@ type LocationDetails {
   windSpeed: Float
 }
 
+type LocationForecastPayload {
+  icon: String
+  probabilityRain: String
+  temperature: String
+  time: String
+}
+
 type Mutation {
   locationAdd(locationName: String!): AddLocationPayload!
 }
 
 type Query {
   location(locationName: String!): LocationDetails!
+  locationForecast(locationName: String!): [LocationForecastPayload]!
   locations: [Location!]!
 }

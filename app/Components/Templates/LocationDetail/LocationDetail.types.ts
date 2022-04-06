@@ -13,3 +13,12 @@ export type LocationDetailQuery = {
     currentTemperature: number;
   };
 };
+
+export type ForecastQuery = {
+  locationForecast: {
+    icon: string;
+    time: string;
+    temperature: string;
+    probabilityRain: number;
+  }[];
+};

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import { DateTime } from 'luxon';
 import { Context } from '../context';
@@ -84,6 +85,42 @@ export const resolveDetailsFromName = async (name: string) => {
     windSpeed: wind.speed,
     currentTemperature: main.temp,
   };
+};
+
+export const resolveForecastByName = async (name: string) => {
+  // Remove umlauts from the name so the request don't get corrupted
+  const cleanName = name.toLowerCase().replace('ö', 'oe').replace('ä', 'ae').replace('ü', 'ue');
+
+  const { data: geoData } = await axios({
+    method: 'get',
+    url: `http://api.openweathermap.org/geo/1.0/direct?q=${cleanName}&appid=${process.env.WEATHER_KEY}`,
+  });
+
+  const { lat, lon } = geoData[0];
+
+  console.log(lat, lon);
+
+  const { data: foreCast } = await axios({
+    method: 'get',
+    url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&excludecurrent,minutely,daily,alerts&appid=${process.env.WEATHER_KEY}`,
+  });
+
+  const hourly = foreCast.hourly.map((location: any, index: number) => {
+    if (index % 3 != 0) {
+      return null;
+    }
+
+    return {
+      time: DateTime.fromSeconds(location.dt).toFormat('T'),
+      icon: mapWeatherIcon(location.weather.icon),
+      temperature: Math.round(location.temp),
+      probabilityRain: location.humidity,
+    };
+  });
+
+  const filtered = hourly.filter((hour: any) => hour !== null);
+
+  return filtered;
 };
 
 /**

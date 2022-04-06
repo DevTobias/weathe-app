@@ -1,8 +1,9 @@
-import { extendType, nonNull, objectType, stringArg } from 'nexus';
+import { extendType, list, nonNull, objectType, stringArg } from 'nexus';
 import {
   resolveLocations,
   resolveDetailsFromName,
   resolveAddLocation,
+  resolveForecastByName,
 } from '../resolvers/Location';
 import { Error } from './Error';
 
@@ -65,6 +66,29 @@ export const LocationDetailQuery = extendType({
         locationName: nonNull(stringArg()),
       },
       resolve: async (_, { locationName }) => resolveDetailsFromName(locationName),
+    });
+  },
+});
+
+const LocationForecastPayload = objectType({
+  name: 'LocationForecastPayload',
+  definition(t) {
+    t.string('time');
+    t.string('icon');
+    t.string('temperature');
+    t.string('probabilityRain');
+  },
+});
+
+export const LocationHourlyForecastQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.nonNull.field('locationForecast', {
+      type: nonNull(list(LocationForecastPayload)),
+      args: {
+        locationName: nonNull(stringArg()),
+      },
+      resolve: async (_, { locationName }) => resolveForecastByName(locationName),
     });
   },
 });
