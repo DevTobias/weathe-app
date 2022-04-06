@@ -7,7 +7,7 @@ const isProd = process.env.NODE_ENV === 'production';
  *
  * @returns The csp headers as string.
  */
-const getCsp = (inlineScriptSource: crypto.BinaryLike) => {
+const getCSP = (inlineScriptSource: crypto.BinaryLike) => {
   const csp = [];
   const hash = crypto.createHash('sha256').update(inlineScriptSource);
 
@@ -26,4 +26,4 @@ const getCsp = (inlineScriptSource: crypto.BinaryLike) => {
   return csp.join('; ');
 };
 
-export default getCsp;
+export default getCSP;

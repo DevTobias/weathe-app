@@ -20,7 +20,7 @@ const innerVh = (id?: string) => {
       return;
     }
 
-    // If id is set, query the element, else use the document root (default behaviour)
+    // If id is set, query the element, else use the document root (default behavior)
     const element = id ? document.getElementById(id) : document.documentElement;
 
     // Calculate the real inner vh unit in pixel and safe it to the root element or the provided one

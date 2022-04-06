@@ -1,4 +1,5 @@
 import Document, { Html, Main, NextScript, Head } from 'next/document';
+import getCSP from '@Utils/getCSP';
 
 class CustomDocument extends Document {
   render() {
@@ -6,6 +7,10 @@ class CustomDocument extends Document {
       <Html lang="de">
         <Head>
           <meta name="referrer" content="strict-origin" />
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content={getCSP(NextScript.getInlineScriptSource(this.props))}
+          />
 
           <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
