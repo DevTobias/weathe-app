@@ -1,9 +1,12 @@
 import type { NextPage } from 'next';
+import Title from '@Helpers/Title';
+import WeatherDashboard from '@Templates/WeatherDashboard';
 
 const Index: NextPage = () => {
   return (
     <>
-      <h1>Hello World</h1>
+      <Title title="Wetter Dashboard" />
+      <WeatherDashboard />
     </>
   );
 };
