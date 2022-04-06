@@ -3,7 +3,7 @@
     "files.exclude": {
       // PROJECT META INFORMATION
       "**/LICENSE": true,
-      "**/README.md": true,
+      //"**/README.md": true,
 
       // VARIABLE CONFIG FILES      (CHANGE IF NEEDED)
       //"**/.env": true,

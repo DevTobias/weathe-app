@@ -9,10 +9,10 @@
 	<p>A simple fullstack application to present weather data from a public API.</p>
   	<p>
 		<a href="https://github.com/DevTobias/weather-app/issues" title="github issues">
-			<img alt="issues" src="https://img.shields.io/github/issues/DevTobias/weather-app/">
+			<img alt="issues" src="https://img.shields.io/github/issues/DevTobias/weather-app">
 		</a>
 		<a href="https://github.com/DevTobias/weather-app//blob/main/LICENSE" title="license">
-			<img src="https://img.shields.io/github/license/DevTobias/weather-app/" alt="license" />
+			<img src="https://img.shields.io/github/license/DevTobias/weather-app" alt="license" />
 		</a>
 		<a href="https://discord.gg/NpxrDGYDwV" title="discord">
 			<img src="https://img.shields.io/discord/792139920260464670?color=7289da&logo=discord&logoColor=white" alt="discord server" />
